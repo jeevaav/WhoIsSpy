@@ -14,8 +14,7 @@ import android.widget.Spinner;
 
 public class GameSettings extends AppCompatActivity {
     private static LinearLayout playersList;
-    private  Button addButton;
-    private static int id = 1;
+    private int id = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +25,7 @@ public class GameSettings extends AppCompatActivity {
 
     public void addPlayersOnClick() {
         playersList = (LinearLayout) findViewById(R.id.playersInput);
-        addButton = (Button) findViewById(R.id.addPlayerButton);
+        Button addButton = (Button) findViewById(R.id.addPlayerButton);
         addButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -43,19 +42,39 @@ public class GameSettings extends AppCompatActivity {
 
                             // add text area
                             EditText name = new EditText(getApplicationContext());
-                            name.setText("Name");
-                            name.setLayoutParams(new LinearLayout.LayoutParams(730,
-                                    ViewGroup.LayoutParams.WRAP_CONTENT));
+                            name.setHint("Name");
+                            name.setLayoutParams(new LinearLayout.LayoutParams(0,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.7f));
                             ll.addView(name);
 
                             // add button
                             Button add = new Button(getApplicationContext());
                             add.setText("Remove");
+                            add.setId(10 + id);
+                            add.setOnClickListener(new View.OnClickListener() {
+                                public void onClick(View v) {
+                                    Button removeButton = (Button) findViewById(v.getId());
+                                    LinearLayout parent = (LinearLayout) removeButton.getParent();
+                                    LinearLayout superParent = (LinearLayout) parent.getParent();
+                                    superParent.removeView(parent);
+                                    id--;
+                                }
+                            });
+                            add.setLayoutParams(new LinearLayout.LayoutParams(0,
+                                    ViewGroup.LayoutParams.WRAP_CONTENT, 0.3f));
                             ll.addView(add);
                             playersList.addView((View) ll);
                         }
                     }
                 }
         );
+    }
+
+    public void removePlayersOnClick(View v) {
+        Button removeButton = (Button) findViewById(v.getId());
+        LinearLayout parent = (LinearLayout) removeButton.getParent();
+        LinearLayout superParent = (LinearLayout) parent.getParent();
+        superParent.removeView(parent);
+        id--;
     }
 }
