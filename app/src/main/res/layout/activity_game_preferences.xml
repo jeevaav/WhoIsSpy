@@ -55,31 +55,34 @@
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView5"
+        android:layout_above="@+id/allPlayers"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="8dp"
         android:text="Players"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/allPlayers"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="serif-monospace"
         android:text="All Players"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView5"
+        android:layout_alignTop="@+id/allPlayers"
         android:layout_marginEnd="85dp"
         android:layout_marginRight="85dp"
         android:layout_marginTop="299dp"

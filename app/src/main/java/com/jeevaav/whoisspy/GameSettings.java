@@ -20,6 +20,7 @@ import java.util.ArrayList;
 public class GameSettings extends AppCompatActivity {
     private LinearLayout playersList;
     private int[] ids = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int maxPlayers = 10;
 
 
     @Override
@@ -33,7 +34,6 @@ public class GameSettings extends AppCompatActivity {
 
         onClickGoButtonListener();
         addPlayersOnClick();
-
     }
 
     public void addPlayersOnClick() {
@@ -105,7 +105,7 @@ public class GameSettings extends AppCompatActivity {
     }
 
     public int roomForPlayer() {
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < maxPlayers; i++) {
             if (ids[i] == 0) {
                 return i;
             }
@@ -116,7 +116,7 @@ public class GameSettings extends AppCompatActivity {
 
     public int numOfPlayers() {
         int counter = 0;
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < maxPlayers; i++) {
             if (ids[i] == 1) {
                 counter++;
             }
@@ -130,10 +130,20 @@ public class GameSettings extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent openMainActivity = new Intent(GameSettings.this,
+                        ArrayList<String> players = new ArrayList<String>();
+                        for (int i = 0; i < maxPlayers; i++) {
+                            if (ids[i] == 1) {
+                                EditText player1   = (EditText) findViewById(100 + i);
+                                String player = player1.getText().toString();
+                                players.add(player);
+                            }
+                        }
+
+                        Intent intent = new Intent(GameSettings.this,
                                                                     GamePreferences.class);
-                        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivityIfNeeded(openMainActivity, 0);
+
+                        intent.putExtra("players", players);
+                        startActivity(intent);
                     }
                 }
         );

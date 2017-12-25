@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class GamePreferences extends AppCompatActivity {
 
@@ -13,6 +16,31 @@ public class GamePreferences extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_preferences);
         backButtonListener();
+
+        Bundle bundle =  getIntent().getExtras();
+
+        ArrayList<String> players = bundle.getStringArrayList("players");
+        TextView allPlayers = findViewById(R.id.allPlayers);
+        String playersList = "";
+        for (int i = 0; i < players.size(); i++) {
+            playersList += players.get(i) + "\n";
+        }
+        playersList = playersList.trim();
+        allPlayers.setText(playersList);
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        Bundle bundle =  getIntent().getExtras();
+        ArrayList<String> players = bundle.getStringArrayList("players");
+        TextView allPlayers = findViewById(R.id.allPlayers);
+        String playersList = "";
+        for (int i = 0; i < players.size(); i++) {
+            playersList += players.get(i) + "\n";
+        }
+        playersList = playersList.trim();
+        allPlayers.setText(playersList);
     }
 
     public void backButtonListener() {
