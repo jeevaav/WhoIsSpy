@@ -34,8 +34,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/allPlayers"
         android:layout_marginTop="1150dp"
-        android:layout_toLeftOf="@+id/spinner3"
-        android:layout_toStartOf="@+id/spinner3"
+        android:layout_toLeftOf="@+id/includeBlanks"
+        android:layout_toStartOf="@+id/includeBlanks"
         android:text="Back"
         app:layout_constraintBottom_toTopOf="@+id/playersInput"
         app:layout_constraintTop_toTopOf="parent" />

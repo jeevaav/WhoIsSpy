@@ -1,9 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.jeevaav.whoisspy.MainGame">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:fontFamily="serif"
+        android:text="Check your word"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:id="@+id/playersList"
+        android:layout_width="match_parent"
+        android:layout_height="480dp"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/backButtonMainGame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/playersList"
+        android:text="Back" />
+
+    <Button
+        android:id="@+id/playButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/playersList"
+        android:text="Play" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:text="Click on your name to see your word"
+        android:textAlignment="center" />
+
+</RelativeLayout>
