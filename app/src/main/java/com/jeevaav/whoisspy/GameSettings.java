@@ -1,8 +1,12 @@
 package com.jeevaav.whoisspy;
 
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -56,15 +60,21 @@ public class GameSettings extends AppCompatActivity {
         LinearLayout ll = new LinearLayout(getApplicationContext());
         ll.setOrientation(LinearLayout.HORIZONTAL);
         ll.setId(id);
+
         LinearLayout.LayoutParams layoutParams =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 10, 0, 0);
+        layoutParams.setMargins(0, 10, 0, 10);
+        ll.setLayoutParams(layoutParams);
+
+        Typeface face = ResourcesCompat.getFont(getApplicationContext(),
+                                                R.font.annie_use_your_telescope);
 
         // add text area
         EditText name = new EditText(getApplicationContext());
         name.setId(100 + id);
         name.setHint("Name");
+        name.setTypeface(face);
         name.setLayoutParams(new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 0.7f));
         ll.addView(name);
@@ -72,6 +82,9 @@ public class GameSettings extends AppCompatActivity {
         // add button
         Button remove = new Button(getApplicationContext());
         remove.setText("Remove");
+        remove.setTextColor(Color.WHITE);
+        remove.setBackgroundColor(Color.BLACK);
+        remove.setTypeface(face);
         remove.setId(10 + id);
         remove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,6 +112,7 @@ public class GameSettings extends AppCompatActivity {
         remove.setLayoutParams(new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 0.3f));
         ll.addView(remove);
+
         playersList.addView((View) ll);
         ids[id] = 1;
     }

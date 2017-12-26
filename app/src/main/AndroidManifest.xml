@@ -9,29 +9,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameSettings" android:label="Players">
+        <activity android:name=".GameSettings"
+            android:label="Players"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.GameSettings" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GamePreferences" android:label="Game Preferences">
+        <activity android:name=".GamePreferences"
+            android:label="Game Preferences"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.GamePreferences" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainGame" android:label=""/>
-        <activity android:name=".Result" android:label=""/>
+        <activity android:name=".MainGame" android:screenOrientation="portrait" android:label=""/>
+        <activity android:name=".Result" android:screenOrientation="portrait" android:label=""/>
 
         <meta-data
             android:name="preloaded_fonts"
@@ -40,7 +44,8 @@
         <activity
             android:name=".HowToPlay"
             android:label="@string/title_activity_how_to_play"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.HowToPlay" />
 

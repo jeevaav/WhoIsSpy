@@ -1,6 +1,8 @@
 package com.jeevaav.whoisspy;
 
 import android.content.Intent;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +35,9 @@ public class GamePreferences extends AppCompatActivity {
         }
         playersList = playersList.trim();
         allPlayers.setText(playersList);
+        Typeface face = ResourcesCompat.getFont(getApplicationContext(),
+                R.font.annie_use_your_telescope);
+        allPlayers.setTypeface(face);
     }
 
 

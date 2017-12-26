@@ -3,8 +3,10 @@ package com.jeevaav.whoisspy;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -101,11 +103,19 @@ public class MainGame extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 10, 0, 0);
+        layoutParams.setMargins(0, 10, 0, 10);
+        ll.setLayoutParams(layoutParams);
+
+        Typeface face = ResourcesCompat.getFont(getApplicationContext(),
+                R.font.annie_use_your_telescope);
 
         // add button
         final Button checkWord = new Button(getApplicationContext());
         checkWord.setText(playerName);
+        checkWord.setTypeface(face);
+        checkWord.setTextColor(Color.WHITE);
+        checkWord.setBackgroundColor(Color.BLACK);
+        checkWord.setTextSize(20);
         checkWord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!(seen.get(playerName))) {

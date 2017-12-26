@@ -3,6 +3,8 @@ package com.jeevaav.whoisspy;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -40,6 +42,9 @@ public class Result extends AppCompatActivity {
                 createPlayer(players.get(i), false);
             }
         }
+
+        onClickHomeButtonListener();
+        onClickRestartButtonListener();
     }
 
     private void createPlayer(final String playerName, final Boolean spy) {
@@ -49,11 +54,20 @@ public class Result extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 10, 0, 0);
+        layoutParams.setMargins(0, 10, 0, 10);
+        ll.setLayoutParams(layoutParams);
+
+        Typeface face = ResourcesCompat.getFont(getApplicationContext(),
+                R.font.annie_use_your_telescope);
 
         // add button
         final Button checkWord = new Button(getApplicationContext());
         checkWord.setText(playerName);
+        checkWord.setTextSize(20);
+        checkWord.setTypeface(face);
+        checkWord.setTextColor(Color.WHITE);
+        checkWord.setBackgroundColor(Color.BLACK);
+
         checkWord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
@@ -145,5 +159,31 @@ public class Result extends AppCompatActivity {
         openMainActivity.putExtra("numOfSpies", numOfSpies);
         openMainActivity.putExtra("includeBlanks", includeBlanks);
         startActivity(openMainActivity);
+    }
+
+    public void onClickHomeButtonListener() {
+        Button goButton = (Button) findViewById(R.id.homeButtonResult);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Result.this,
+                                MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+
+    public void onClickRestartButtonListener() {
+        Button goButton = (Button) findViewById(R.id.restartButton);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        restartGame();
+                    }
+                }
+        );
     }
 }

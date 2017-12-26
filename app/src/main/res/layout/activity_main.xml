@@ -9,43 +9,68 @@
     tools:context="com.jeevaav.whoisspy.MainActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="185dp"
-        android:layout_alignBottom="@+id/playButton"
-        android:layout_marginTop="20dp"
-        app:srcCompat="@drawable/whoisspy" />
-
-    <Button
-        android:id="@+id/playButton"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/black"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="Play"
-        android:textColor="@android:color/white"
-        android:textSize="24sp" />
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:orientation="vertical">
 
-    <Button
-        android:id="@+id/instructionButton"
+        <Button
+            android:id="@+id/playButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@android:color/black"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:text="Play"
+            android:textColor="@android:color/white"
+            android:textSize="27sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="Instructions"
-        android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:layout_height="0dp"
+        android:layout_weight="0.4"
+        android:orientation="vertical">
 
-        />
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignBottom="@+id/playButton"
+            android:layout_marginTop="20dp"
+            android:layout_weight="0.7"
+            app:srcCompat="@drawable/whoisspy" />
 
-    <pl.droidsonroids.gif.GifImageView
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/giphy2"
-        android:background="@android:color/black"
-        />
+        android:layout_height="0dp"
+        android:layout_weight="0.3"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/instructionButton"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:background="@android:color/black"
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:text="Instructions"
+            android:textColor="@android:color/white"
+
+            android:textSize="20sp" />
+
+        <pl.droidsonroids.gif.GifImageView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:background="@android:color/black"
+            android:src="@drawable/giphy2" />
+    </LinearLayout>
 
 
 </LinearLayout>
