@@ -25,7 +25,7 @@ public class GamePreferences extends AppCompatActivity {
 
         Bundle bundle =  getIntent().getExtras();
 
-        players = bundle.getStringArrayList("players");
+        players = bundle.getStringArrayList("activity_game_settings");
         TextView allPlayers = findViewById(R.id.allPlayers);
         String playersList = "";
         for (int i = 0; i < players.size(); i++) {
@@ -68,7 +68,7 @@ public class GamePreferences extends AppCompatActivity {
 
                         intent.putExtra("numOfSpies", Integer.parseInt(numOfSpies));
                         intent.putExtra("includeBlanks", includeBlanks);
-                        intent.putExtra("players", players);
+                        intent.putExtra("activity_game_settings", players);
 
                         startActivity(intent);
                     }

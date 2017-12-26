@@ -26,7 +26,7 @@ public class Result extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("players");
+        players = bundle.getStringArrayList("activity_game_settings");
         spies = bundle.getIntArray("spies");
         numOfSpies = spies.length;
         playersAlive = players.size() - numOfSpies;
@@ -141,7 +141,7 @@ public class Result extends AppCompatActivity {
     private void restartGame() {
         Intent openMainActivity= new Intent(Result.this,
                 MainGame.class);
-        openMainActivity.putExtra("players", players);
+        openMainActivity.putExtra("activity_game_settings", players);
         openMainActivity.putExtra("numOfSpies", numOfSpies);
         openMainActivity.putExtra("includeBlanks", includeBlanks);
         startActivity(openMainActivity);

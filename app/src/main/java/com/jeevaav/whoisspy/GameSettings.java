@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,8 +30,9 @@ public class GameSettings extends AppCompatActivity {
             createPlayer(i);
         }
 
-        onClickGoButtonListener();
+        onClickNextButtonListener();
         addPlayersOnClick();
+        onClickHomeButtonListener();
     }
 
     public void addPlayersOnClick() {
@@ -84,7 +83,7 @@ public class GameSettings extends AppCompatActivity {
                     ids[(int) v.getId() - 10] = 0;
                 } else {
                     AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
-                    a_builder.setMessage("Minimum 3 players required!").setCancelable(true).setNegativeButton("ok",
+                    a_builder.setMessage("Minimum 3 activity_game_settings required!").setCancelable(true).setNegativeButton("ok",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -110,7 +109,7 @@ public class GameSettings extends AppCompatActivity {
                 return i;
             }
         }
-        // no room for more players
+        // no room for more activity_game_settings
         return -1;
     }
 
@@ -124,26 +123,63 @@ public class GameSettings extends AppCompatActivity {
         return counter;
     }
 
-    public void onClickGoButtonListener() {
+    public void onClickHomeButtonListener() {
+        Button goButton = (Button) findViewById(R.id.homeButton);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(GameSettings.this,
+                                MainActivity.class);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+
+    public void onClickNextButtonListener() {
         Button goButton = (Button) findViewById(R.id.nextButton);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        boolean flag = false;
                         ArrayList<String> players = new ArrayList<String>();
                         for (int i = 0; i < maxPlayers; i++) {
                             if (ids[i] == 1) {
                                 EditText player1   = (EditText) findViewById(100 + i);
                                 String player = player1.getText().toString();
+                                if (player.isEmpty() || player == null) {
+                                    flag = true;
+                                    break;
+                                }
                                 players.add(player);
+
                             }
                         }
+                        if (flag) {
+                            AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
+                            a_builder.setMessage("Please enter valid player name")
+                                    .setCancelable(true)
+                                    .setNegativeButton("ok",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    dialogInterface.cancel();
+                                                }
+                                            });
+                            AlertDialog gameOver = a_builder.create();
+                            gameOver.setTitle("Error");
+                            gameOver.show();
 
-                        Intent intent = new Intent(GameSettings.this,
-                                                                    GamePreferences.class);
+                        } else {
 
-                        intent.putExtra("players", players);
-                        startActivity(intent);
+                            Intent intent = new Intent(GameSettings.this,
+                                    GamePreferences.class);
+
+                            intent.putExtra("activity_game_settings", players);
+                            startActivity(intent);
+                        }
                     }
                 }
         );

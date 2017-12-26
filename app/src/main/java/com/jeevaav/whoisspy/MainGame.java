@@ -41,13 +41,13 @@ public class MainGame extends AppCompatActivity {
         populateWords();
 
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("players");
+        players = bundle.getStringArrayList("activity_game_settings");
         numOfSpies = bundle.getInt("numOfSpies");
         includeBlanks = bundle.getString("includeBlanks");
 
         if (numOfSpies > (players.size() - 3)) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
-            a_builder.setMessage("Number of players must be at least 2 more than number of spies")
+            a_builder.setMessage("Number of activity_game_settings must be at least 2 more than number of spies")
                     .setCancelable(true).setNegativeButton("ok",
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -159,7 +159,7 @@ public class MainGame extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(MainGame.this,
                                 Result.class);
-                        intent.putExtra("players", players);
+                        intent.putExtra("activity_game_settings", players);
                         intent.putExtra("spies", spies);
                         intent.putExtra("includeBlanks", includeBlanks);
                         startActivity(intent);

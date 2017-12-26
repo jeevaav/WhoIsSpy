@@ -16,22 +16,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameSettings">
+        <activity android:name=".GameSettings" android:label="Players">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.GameSettings" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GamePreferences">
+        <activity android:name=".GamePreferences" android:label="Game Preferences">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.GamePreferences" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainGame" />
-        <activity android:name=".Result"></activity>
+        <activity android:name=".MainGame" android:label=""/>
+        <activity android:name=".Result" android:label=""/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+
+        <activity
+            android:name=".HowToPlay"
+            android:label="@string/title_activity_how_to_play"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="com.jeevaav.whoisspy.HowToPlay" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -1,18 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@android:color/black"
+    android:orientation="vertical"
     tools:context="com.jeevaav.whoisspy.MainActivity">
 
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="185dp"
+        android:layout_alignBottom="@+id/playButton"
+        android:layout_marginTop="20dp"
+        app:srcCompat="@drawable/whoisspy" />
+
     <Button
         android:id="@+id/playButton"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Play!"
-        tools:layout_editor_absoluteX="172dp"
-        tools:layout_editor_absoluteY="228dp" />
-</android.support.constraint.ConstraintLayout>
+        android:layout_marginTop="40dp"
+        android:background="@android:color/black"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:text="Play"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/instructionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:text="Instructions"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+
+        />
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/giphy2"
+        android:background="@android:color/black"
+        />
+
+
+</LinearLayout>

@@ -29,14 +29,14 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/backButton2"
+        android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/allPlayers"
         android:layout_marginTop="1150dp"
         android:layout_toLeftOf="@+id/includeBlanks"
         android:layout_toStartOf="@+id/includeBlanks"
-        android:text="Back"
+        android:text="Home"
         app:layout_constraintBottom_toTopOf="@+id/playersInput"
         app:layout_constraintTop_toTopOf="parent" />
 
