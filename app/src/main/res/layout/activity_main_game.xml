@@ -15,28 +15,31 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/checkWord"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15dp"
-            android:layout_weight="0.7"
+            android:layout_weight="0.5"
             android:fontFamily="serif"
+            android:gravity="center_vertical"
             android:text="Check your word"
             android:textAlignment="center"
-            android:textSize="24sp" />
+            android:autoSizeTextType="uniform"
+             />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/checkWordSub"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_below="@+id/textView2"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="0.3"
+            android:layout_below="@+id/checkWord"
+            android:layout_weight="0.5"
             android:fontFamily="monospace"
             android:text="Click on your name to see your word"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:autoSizeTextType="uniform"
+             />
+
     </LinearLayout>
 
     <LinearLayout
@@ -54,6 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
+                android:autoSizeTextType="uniform"
                 android:orientation="vertical">
 
             </LinearLayout>
@@ -81,6 +85,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Play"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -96,6 +102,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Back"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

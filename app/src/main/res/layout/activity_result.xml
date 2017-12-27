@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:padding="8dp"
+    android:orientation="vertical"
     tools:context="com.jeevaav.whoisspy.Result">
 
     <LinearLayout
@@ -15,27 +16,30 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/playSmart"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="0.5"
+            android:autoSizeTextType="uniform"
             android:fontFamily="serif"
             android:gravity="center_vertical"
             android:text="Play smart! "
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/playSmartSub"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_weight="0.5"
+            android:autoSizeTextType="uniform"
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="Click on the player you think is a spy"
-            android:textAlignment="center"
-            android:textSize="18sp" />
+            android:textAlignment="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -56,6 +60,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:autoSizeTextType="uniform"
                 android:orientation="vertical"></LinearLayout>
         </ScrollView>
 
@@ -81,6 +86,8 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Restart"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -96,11 +103,15 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
+                android:autoSizeTextType="uniform"
+                android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Home"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
         </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
 </LinearLayout>

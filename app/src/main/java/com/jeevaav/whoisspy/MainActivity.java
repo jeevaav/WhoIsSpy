@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         onClickPlayButtonListener();
-        textColorAnimator();
         onClickInstructionsButtonListener();
     }
 
@@ -56,23 +55,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void textColorAnimator() {
-        final Button playButton = findViewById(R.id.playButton);
 
-        Integer colorFrom = Color.RED;
-        Integer colorTo = Color.WHITE;
-        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setDuration(1000);
-        colorAnimation.setRepeatCount(ValueAnimator.INFINITE);
-        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-
-            @Override
-            public void onAnimationUpdate(ValueAnimator animator) {
-                playButton.setTextColor((Integer)animator.getAnimatedValue());
-            }
-
-        });
-        colorAnimation.start();
-    }
 
 }

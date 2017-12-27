@@ -34,6 +34,21 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_how_to_play" />
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_how_to_play" />
+
+    <Button
+        android:id="@+id/homeButtonInstructions"
+        android:layout_width="107dp"
+        android:layout_height="wrap_content"
+        android:autoSizeMaxTextSize="130sp"
+        android:background="@android:color/darker_gray"
+        android:fontFamily="@font/annie_use_your_telescope"
+        android:text="Home"
+        android:textColor="@android:color/white"
+        app:layout_anchor="@+id/include"
+        app:layout_anchorGravity="right|bottom"
+        tools:layout_editor_absoluteX="304dp" />
 
 </android.support.design.widget.CoordinatorLayout>

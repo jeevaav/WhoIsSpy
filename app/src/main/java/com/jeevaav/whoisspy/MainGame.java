@@ -10,11 +10,13 @@ import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -43,13 +45,13 @@ public class MainGame extends AppCompatActivity {
         populateWords();
 
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("activity_game_settings");
+        players = bundle.getStringArrayList("players");
         numOfSpies = bundle.getInt("numOfSpies");
         includeBlanks = bundle.getString("includeBlanks");
 
         if (numOfSpies > (players.size() - 3)) {
             AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
-            a_builder.setMessage("Number of activity_game_settings must be at least 2 more than number of spies")
+            a_builder.setMessage("Number of players must be at least 2 more than number of spies")
                     .setCancelable(true).setNegativeButton("ok",
                     new DialogInterface.OnClickListener() {
                         @Override
@@ -81,6 +83,7 @@ public class MainGame extends AppCompatActivity {
         }
 
         playButtonListener();
+        backButtonListener();
     }
 
     private void populateWords() {
@@ -169,9 +172,24 @@ public class MainGame extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent intent = new Intent(MainGame.this,
                                 Result.class);
-                        intent.putExtra("activity_game_settings", players);
+                        intent.putExtra("players", players);
                         intent.putExtra("spies", spies);
                         intent.putExtra("includeBlanks", includeBlanks);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+
+    public void backButtonListener() {
+        Button goButton = (Button) findViewById(R.id.backButtonMainGame);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(MainGame.this,
+                                GamePreferences.class);
+                        intent.putExtra("players", players);
                         startActivity(intent);
                     }
                 }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -27,8 +28,9 @@ public class Result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("activity_game_settings");
+        players = bundle.getStringArrayList("players");
         spies = bundle.getIntArray("spies");
         numOfSpies = spies.length;
         playersAlive = players.size() - numOfSpies;
@@ -155,7 +157,7 @@ public class Result extends AppCompatActivity {
     private void restartGame() {
         Intent openMainActivity= new Intent(Result.this,
                 MainGame.class);
-        openMainActivity.putExtra("activity_game_settings", players);
+        openMainActivity.putExtra("players", players);
         openMainActivity.putExtra("numOfSpies", numOfSpies);
         openMainActivity.putExtra("includeBlanks", includeBlanks);
         startActivity(openMainActivity);

@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -18,6 +20,8 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
+
 
 public class GameSettings extends AppCompatActivity {
     private LinearLayout playersList;
@@ -25,6 +29,7 @@ public class GameSettings extends AppCompatActivity {
     private int maxPlayers = 10;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,7 @@ public class GameSettings extends AppCompatActivity {
         Button addButton = findViewById(R.id.addPlayerButton);
         addButton.setOnClickListener(
                 new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View v) {
                         int id = roomForPlayer();
@@ -55,6 +61,7 @@ public class GameSettings extends AppCompatActivity {
         );
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void createPlayer(int id) {
         playersList = findViewById(R.id.playersInput);
         LinearLayout ll = new LinearLayout(getApplicationContext());
@@ -73,6 +80,7 @@ public class GameSettings extends AppCompatActivity {
         // add text area
         EditText name = new EditText(getApplicationContext());
         name.setId(100 + id);
+        name.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM );
         name.setHint("Name");
         name.setTypeface(face);
         name.setLayoutParams(new LinearLayout.LayoutParams(0,
@@ -84,6 +92,7 @@ public class GameSettings extends AppCompatActivity {
         remove.setText("Remove");
         remove.setTextColor(Color.WHITE);
         remove.setBackgroundColor(Color.BLACK);
+        remove.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
         remove.setTypeface(face);
         remove.setId(10 + id);
         remove.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +105,7 @@ public class GameSettings extends AppCompatActivity {
                     ids[(int) v.getId() - 10] = 0;
                 } else {
                     AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
-                    a_builder.setMessage("Minimum 3 activity_game_settings required!").setCancelable(true).setNegativeButton("ok",
+                    a_builder.setMessage("Minimum 3 players required!").setCancelable(true).setNegativeButton("ok",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
@@ -191,7 +200,7 @@ public class GameSettings extends AppCompatActivity {
                             Intent intent = new Intent(GameSettings.this,
                                     GamePreferences.class);
 
-                            intent.putExtra("activity_game_settings", players);
+                            intent.putExtra("players", players);
                             startActivity(intent);
                         }
                     }

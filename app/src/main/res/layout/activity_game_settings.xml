@@ -12,7 +12,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.10"
+        android:layout_weight="0.08"
         android:orientation="vertical">
 
         <Button
@@ -20,12 +20,11 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/black"
+            android:autoSizeTextType="uniform"
+            android:background="@android:color/darker_gray"
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="Add Players"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +33,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"
+        android:layout_weight="0.84"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -67,7 +66,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.10"
+        android:layout_weight="0.08"
         android:orientation="vertical"
         android:weightSum="1">
 
@@ -93,12 +92,12 @@
                 android:layout_marginTop="2dp"
                 android:layout_toLeftOf="@+id/includeBlanks"
                 android:layout_toStartOf="@+id/includeBlanks"
-                android:background="@android:color/black"
+                android:autoSizeTextType="uniform"
+                android:background="@android:color/darker_gray"
                 android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Home"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -114,12 +113,12 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
-                android:background="@android:color/black"
+                android:autoSizeTextType="uniform"
+                android:background="@android:color/darker_gray"
                 android:fontFamily="@font/annie_use_your_telescope"
                 android:text="Next"
                 android:textColor="@android:color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
