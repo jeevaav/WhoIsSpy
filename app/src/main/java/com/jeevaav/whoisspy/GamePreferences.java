@@ -13,12 +13,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class GamePreferences extends AppCompatActivity {
 
-    private ArrayList<String> players;
+    private HashMap<String, Integer> players;
     private String numOfSpies;
     private String includeBlanks;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,11 +30,11 @@ public class GamePreferences extends AppCompatActivity {
         nextButtonListener();
 
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("players");
+        players = (HashMap<String, Integer>) bundle.getSerializable("players");
         TextView allPlayers = findViewById(R.id.allPlayers);
         String playersList = "";
-        for (int i = 0; i < players.size(); i++) {
-            playersList += players.get(i) + "\n";
+        for (String key: players.keySet()) {
+            playersList += key + "\n";
         }
         playersList = playersList.trim();
         allPlayers.setText(playersList);

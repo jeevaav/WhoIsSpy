@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
@@ -18,15 +20,20 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Result extends AppCompatActivity {
-    private ArrayList<String> players;
+    private HashMap<String, Integer> players;
     private int numOfSpies;
     private String includeBlanks;
     private int[] spies;
     private int spiesAlive;
     private int playersAlive;
+    private ArrayList<String> playersAliveNames;
+    private ArrayList<String> normalPlayersDeathNames;
+    private ArrayList<String> spiesDeathNames;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,25 +46,34 @@ public class Result extends AppCompatActivity {
         lp.width = width;
 
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("players");
+        players = (HashMap<String, Integer>) bundle.getSerializable("players");
         spies = bundle.getIntArray("spies");
         numOfSpies = spies.length;
         playersAlive = players.size() - numOfSpies;
         spiesAlive = spies.length;
         includeBlanks = bundle.getString("includeBlanks");
 
-        for (int i = 0; i < players.size(); i++) {
-            if (containsInt(spies, i)) {
-                createPlayer(players.get(i), true);
+        playersAliveNames = new ArrayList<String>();
+        normalPlayersDeathNames = new ArrayList<String>();
+        spiesDeathNames = new ArrayList<String>();
+
+        int counter = 0;
+        for (String key: players.keySet()) {
+            if (containsInt(spies, counter)) {
+                createPlayer(key, true);
             } else {
-                createPlayer(players.get(i), false);
+                createPlayer(key, false);
             }
+            playersAliveNames.add(key);
+            counter++;
         }
 
         onClickHomeButtonListener();
         onClickRestartButtonListener();
+        onClickRankButtonListener();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void createPlayer(final String playerName, final Boolean spy) {
         LinearLayout playersList = findViewById(R.id.playersResultList);
         LinearLayout ll = new LinearLayout(getApplicationContext());
@@ -73,8 +89,9 @@ public class Result extends AppCompatActivity {
 
         // add button
         final Button checkWord = new Button(getApplicationContext());
+        checkWord.setId(playerName.hashCode());
         checkWord.setText(playerName);
-        checkWord.setTextSize(20);
+        checkWord.setTextAppearance(R.style.TextSize);
         checkWord.setTypeface(face);
         checkWord.setTextColor(Color.WHITE);
         checkWord.setBackgroundColor(Color.BLACK);
@@ -94,6 +111,7 @@ public class Result extends AppCompatActivity {
                             });
                     checkWord.setTextColor(Color.RED);
                     playersAlive--;
+                    normalPlayersDeathNames.add(playerName);
 
                 } else {
                     a_builder.setMessage("Spy busted!").setCancelable(true)
@@ -106,41 +124,49 @@ public class Result extends AppCompatActivity {
                             });
                     checkWord.setTextColor(Color.BLUE);
                     spiesAlive--;
-
+                    spiesDeathNames.add(playerName);
                 }
+                playersAliveNames.remove(playerName);
+
 
                 AlertDialog.Builder gameOverAlert = new AlertDialog.Builder(Result.this);
                 if ((playersAlive < spiesAlive && numOfSpies > 1) ||
                         (playersAlive == spiesAlive && numOfSpies == 1)) {
-
-                    gameOverAlert.setMessage("Game over!\nTeam Spy Win")
-                            .setCancelable(false)
-                            .setNegativeButton("Play Again",
+                    updatePoints();
+                    updateSpiesPoint();
+                    cancelAllButtons();
+                    gameOverAlert.setMessage("The spy team has won!")
+                            .setCancelable(true)
+                            .setNegativeButton("ok",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
-                                    restartGame();
                                 }
                             });
                     AlertDialog gameOver = gameOverAlert.create();
                     gameOver.show();
+                    TextView view = findViewById(R.id.playSmartSub);
+                    view.setText("Game Over");
                 }
 
                 if (spiesAlive == 0) {
-
-                    gameOverAlert.setMessage("Game over!\nTeam Spy has been defeated")
-                            .setCancelable(false)
-                            .setNegativeButton("PLay Again",
+                    updatePoints();
+                    updateNormalPlayersPoint();
+                    cancelAllButtons();
+                    gameOverAlert.setMessage("The normal team has won!")
+                            .setCancelable(true)
+                            .setNegativeButton("ok",
                             new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     dialogInterface.cancel();
-                                    restartGame();
                                 }
                             });
                     AlertDialog gameOver = gameOverAlert.create();
                     gameOver.show();
+                    TextView view = findViewById(R.id.playSmartSub);
+                    view.setText("Game Over");
                 }
                 AlertDialog alert = a_builder.create();
                 alert.show();
@@ -172,7 +198,7 @@ public class Result extends AppCompatActivity {
         startActivity(openMainActivity);
     }
 
-    public void onClickHomeButtonListener() {
+    private void onClickHomeButtonListener() {
         ImageButton goButton = (ImageButton) findViewById(R.id.homeButtonResult);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -186,7 +212,7 @@ public class Result extends AppCompatActivity {
         );
     }
 
-    public void onClickRestartButtonListener() {
+    private void onClickRestartButtonListener() {
         Button goButton = (Button) findViewById(R.id.restartButton);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
@@ -196,5 +222,48 @@ public class Result extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void updatePoints() {
+        for (String player: playersAliveNames) {
+            int currPoint = players.get(player);
+            players.put(player, currPoint + 10);
+        }
+    }
+
+    private void updateNormalPlayersPoint() {
+        for (String player: normalPlayersDeathNames) {
+            int currPoint = players.get(player);
+            players.put(player, currPoint + 5);
+        }
+    }
+
+    private void updateSpiesPoint() {
+        for (String player: spiesDeathNames) {
+            int currPoint = players.get(player);
+            players.put(player, currPoint + 5);
+        }
+    }
+
+    private void onClickRankButtonListener() {
+        Button goButton = (Button) findViewById(R.id.rankButton);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(Result.this,
+                                Standings.class);
+                        intent.putExtra("players", players);
+                        startActivity(intent);
+                    }
+                }
+        );
+    }
+
+    private void cancelAllButtons() {
+        for (String player : players.keySet()) {
+            Button button = findViewById(player.hashCode());
+            button.setEnabled(false);
+        }
     }
 }

@@ -62,6 +62,7 @@
                 android:layout_alignParentStart="true"
                 android:autoSizeTextType="uniform"
                 android:orientation="vertical"></LinearLayout>
+
         </ScrollView>
 
     </LinearLayout>
@@ -87,15 +88,36 @@
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
                 android:autoSizeTextType="uniform"
-                android:fontFamily="@font/annie_use_your_telescope"
-                android:text="Restart"
                 android:background="@android:color/transparent"
+                android:fontFamily="@font/annie_use_your_telescope"
+                android:text="Play Again!"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <ImageButton
                 android:id="@+id/homeButtonResult"
+                android:layout_width="54dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/playersList"
+                android:layout_marginBottom="2dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="2dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/rankButton"
+                app:layout_constraintStart_toEndOf="@+id/restartButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.98"
+                app:srcCompat="@drawable/home" />
+
+            <Button
+                android:id="@+id/rankButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
@@ -104,12 +126,14 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
-                app:srcCompat="@drawable/home"
+                android:autoSizeTextType="uniform"
                 android:background="@android:color/transparent"
-                android:scaleType="fitXY"
+                android:fontFamily="@font/annie_use_your_telescope"
+                android:text="Rank"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
         </android.support.constraint.ConstraintLayout>
 

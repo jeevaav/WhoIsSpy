@@ -22,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
 
@@ -102,14 +103,14 @@ public class GameSettings extends AppCompatActivity {
         // add text area
         EditText name = new EditText(getApplicationContext());
         name.setId(100 + id);
-        name.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM );
+        name.setTextAppearance(R.style.TextSize);
         name.setHint("Name");
         name.setTypeface(face);
         name.setLayoutParams(new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 0.9f));
         ll.addView(name);
 
-        // add button
+        // remove button
         ImageButton remove = new ImageButton(GameSettings.this);
         remove.setImageResource(R.drawable.remove);
         remove.setScaleType(ImageView.ScaleType.FIT_CENTER);
@@ -168,7 +169,7 @@ public class GameSettings extends AppCompatActivity {
     }
 
     public void onClickBackButtonListener() {
-        ImageButton goButton = (ImageButton) findViewById(R.id.homeButton);
+        ImageButton goButton = (ImageButton) findViewById(R.id.backButtonPlayers);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -200,7 +201,7 @@ public class GameSettings extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         boolean flag = false;
-                        ArrayList<String> players = new ArrayList<String>();
+                        HashMap<String, Integer> players = new HashMap<String, Integer>();
                         for (int i = 0; i < maxPlayers; i++) {
                             if (ids[i] == 1) {
                                 EditText player1   = (EditText) findViewById(100 + i);
@@ -209,7 +210,7 @@ public class GameSettings extends AppCompatActivity {
                                     flag = true;
                                     break;
                                 }
-                                players.add(player);
+                                players.put(player, 0);
 
                             }
                         }

@@ -9,14 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" android:screenOrientation="portrait">
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameSettings"
+        <activity
+            android:name=".GameSettings"
             android:label="Players"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
@@ -26,7 +29,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".GamePreferences"
+        <activity
+            android:name=".GamePreferences"
             android:label="Game Preferences"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,8 +39,16 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainGame" android:screenOrientation="portrait" android:label=""/>
-        <activity android:name=".Result" android:screenOrientation="portrait" android:label=""/>
+
+        <activity
+            android:name=".MainGame"
+            android:label=""
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".Result"
+            android:label=""
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"
@@ -45,13 +57,22 @@
         <activity
             android:name=".HowToPlay"
             android:label="@string/title_activity_how_to_play"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.HowToPlay" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".Standings"
+            android:theme="@style/AppTheme.PopUpCustom"
+            android:label=""
+            android:screenOrientation="portrait">
+        </activity>
+
     </application>
 
 </manifest>

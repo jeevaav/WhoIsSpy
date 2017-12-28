@@ -22,6 +22,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Random;
 
 
@@ -29,7 +30,7 @@ public class MainGame extends AppCompatActivity {
 
     private HashMap<String, String> words = new HashMap<String, String>();
     private ArrayList<String> normalWords = new ArrayList<String>();
-    private ArrayList<String> players;
+    private HashMap<String, Integer> players;
     private HashMap<String, Boolean> seen = new HashMap<String, Boolean>();
     private String normalWord;
     private String spyWord;
@@ -46,7 +47,7 @@ public class MainGame extends AppCompatActivity {
         populateWords();
 
         Bundle bundle =  getIntent().getExtras();
-        players = bundle.getStringArrayList("players");
+        players = (HashMap<String, Integer>) bundle.getSerializable("players");
         numOfSpies = bundle.getInt("numOfSpies");
         includeBlanks = bundle.getString("includeBlanks");
 
@@ -74,13 +75,16 @@ public class MainGame extends AppCompatActivity {
         spies = rand.ints(0, players.size())
                                                 .distinct().limit(numOfSpies).toArray();
 
-        for (int i = 0; i < players.size(); i++) {
-            if (containsInt(spies, i)) {
-                createPlayer(players.get(i), true);
+
+        int counter = 0;
+        for (String key : players.keySet()) {
+            if (containsInt(spies, counter)) {
+                createPlayer(key, true);
             } else {
-                createPlayer(players.get(i), false);
+                createPlayer(key, false);
             }
-            seen.put(players.get(i), false);
+            seen.put(key, false);
+            counter++;
         }
 
         playButtonListener();
@@ -100,6 +104,7 @@ public class MainGame extends AppCompatActivity {
         normalWords.add("Mathematics");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void createPlayer(final String playerName, final Boolean spy) {
         LinearLayout playersList = findViewById(R.id.playersList);
         LinearLayout ll = new LinearLayout(getApplicationContext());
@@ -116,10 +121,10 @@ public class MainGame extends AppCompatActivity {
         // add button
         final Button checkWord = new Button(getApplicationContext());
         checkWord.setText(playerName);
+        checkWord.setTextAppearance(R.style.TextSize);
         checkWord.setTypeface(face);
         checkWord.setTextColor(Color.WHITE);
         checkWord.setBackgroundColor(Color.BLACK);
-        checkWord.setTextSize(20);
         checkWord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (!(seen.get(playerName))) {
