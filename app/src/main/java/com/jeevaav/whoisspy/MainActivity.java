@@ -17,11 +17,12 @@ import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     private static Button playButton;
-
+    DatabaseHelper mydb;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mydb = new DatabaseHelper(MainActivity.this);
         onClickPlayButtonListener();
         onClickInstructionsButtonListener();
     }

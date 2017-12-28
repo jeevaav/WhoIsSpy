@@ -4,10 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by jeeva on 2017-12-26.
- */
-
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "words.db";
@@ -16,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL2 = "normal_word";
     private static final String COL3 = "spy_word";
 
-    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
     }

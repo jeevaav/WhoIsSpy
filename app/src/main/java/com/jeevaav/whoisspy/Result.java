@@ -30,8 +30,6 @@ public class Result extends AppCompatActivity {
     private int spiesAlive;
     private int playersAlive;
     private ArrayList<String> playersAliveNames;
-    private ArrayList<String> normalPlayersDeathNames;
-    private ArrayList<String> spiesDeathNames;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -54,8 +52,7 @@ public class Result extends AppCompatActivity {
         includeBlanks = bundle.getString("includeBlanks");
 
         playersAliveNames = new ArrayList<String>();
-        normalPlayersDeathNames = new ArrayList<String>();
-        spiesDeathNames = new ArrayList<String>();
+
 
         int counter = 0;
         for (String key: players.keySet()) {
@@ -111,7 +108,6 @@ public class Result extends AppCompatActivity {
                             });
                     checkWord.setTextColor(Color.RED);
                     playersAlive--;
-                    normalPlayersDeathNames.add(playerName);
 
                 } else {
                     a_builder.setMessage("Spy busted!").setCancelable(true)
@@ -124,7 +120,7 @@ public class Result extends AppCompatActivity {
                             });
                     checkWord.setTextColor(Color.BLUE);
                     spiesAlive--;
-                    spiesDeathNames.add(playerName);
+
                 }
                 playersAliveNames.remove(playerName);
 
@@ -133,7 +129,6 @@ public class Result extends AppCompatActivity {
                 if ((playersAlive < spiesAlive && numOfSpies > 1) ||
                         (playersAlive == spiesAlive && numOfSpies == 1)) {
                     updatePoints();
-                    updateSpiesPoint();
                     cancelAllButtons();
                     gameOverAlert.setMessage("The spy team has won!")
                             .setCancelable(true)
@@ -152,7 +147,6 @@ public class Result extends AppCompatActivity {
 
                 if (spiesAlive == 0) {
                     updatePoints();
-                    updateNormalPlayersPoint();
                     cancelAllButtons();
                     gameOverAlert.setMessage("The normal team has won!")
                             .setCancelable(true)
@@ -228,20 +222,6 @@ public class Result extends AppCompatActivity {
         for (String player: playersAliveNames) {
             int currPoint = players.get(player);
             players.put(player, currPoint + 10);
-        }
-    }
-
-    private void updateNormalPlayersPoint() {
-        for (String player: normalPlayersDeathNames) {
-            int currPoint = players.get(player);
-            players.put(player, currPoint + 5);
-        }
-    }
-
-    private void updateSpiesPoint() {
-        for (String player: spiesDeathNames) {
-            int currPoint = players.get(player);
-            players.put(player, currPoint + 5);
         }
     }
 
