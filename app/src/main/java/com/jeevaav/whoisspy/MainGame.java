@@ -14,6 +14,7 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -182,7 +183,7 @@ public class MainGame extends AppCompatActivity {
     }
 
     public void backButtonListener() {
-        Button goButton = (Button) findViewById(R.id.backButtonMainGame);
+        ImageButton goButton = (ImageButton) findViewById(R.id.backButtonMainGame);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

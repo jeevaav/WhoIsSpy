@@ -24,7 +24,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginBottom="8dp"
             android:fontFamily="@font/annie_use_your_telescope"
-            android:text="Players"
+            android:text="List of Players"
             android:textAlignment="center"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -62,7 +62,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="Number of Spies"
@@ -106,7 +106,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@+id/numOfSpies"
-            android:layout_weight="0.5"
+            android:layout_weight="0.3"
             android:autoSizeTextType="uniform"
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="Include blanks?"
@@ -118,22 +118,15 @@
             android:layout_height="0dp"
             android:layout_weight="0.5">
 
-            <Spinner
+            <CheckBox
                 android:id="@+id/includeBlanks"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_alignLeft="@+id/numOfSpies"
-                android:layout_alignStart="@+id/numOfSpies"
-                android:layout_below="@+id/textView3"
-                android:layout_marginEnd="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_weight="0.5"
-                android:autoSizeTextType="uniform"
-                android:entries="@array/yes_no"
-                app:layout_constraintBottom_toBottomOf="parent"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteY="0dp" />
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>
@@ -148,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
+            <ImageButton
                 android:id="@+id/backButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -158,12 +151,15 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:text="Back"
+                app:srcCompat="@drawable/back"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/nextButtonPreferences"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -173,11 +169,13 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
-                android:text="Next"
+                app:srcCompat="@drawable/next"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
         </android.support.constraint.ConstraintLayout>
 
     </LinearLayout>

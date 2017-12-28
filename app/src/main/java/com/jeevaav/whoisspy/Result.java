@@ -4,13 +4,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,6 +31,12 @@ public class Result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        ImageButton home = (ImageButton) findViewById(R.id.homeButtonResult);
+        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) home.getLayoutParams();
+        int width = (display.getWidth() * 12) / 100;
+        lp.width = width;
 
         Bundle bundle =  getIntent().getExtras();
         players = bundle.getStringArrayList("players");
@@ -164,7 +173,7 @@ public class Result extends AppCompatActivity {
     }
 
     public void onClickHomeButtonListener() {
-        Button goButton = (Button) findViewById(R.id.homeButtonResult);
+        ImageButton goButton = (ImageButton) findViewById(R.id.homeButtonResult);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

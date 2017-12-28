@@ -1,21 +1,24 @@
 package com.jeevaav.whoisspy;
 
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
@@ -35,18 +38,26 @@ public class GameSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_settings);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             createPlayer(i);
         }
+
+        Display display = getWindowManager().getDefaultDisplay();
+        ImageButton home = (ImageButton) findViewById(R.id.homeButton);
+        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) home.getLayoutParams();
+        int width = (display.getWidth() * 12) / 100;
+        lp.width = width;
+        home.setLayoutParams(lp);
 
         onClickNextButtonListener();
         addPlayersOnClick();
         onClickHomeButtonListener();
+        onClickBackButtonListener();
     }
 
     public void addPlayersOnClick() {
         playersList = findViewById(R.id.playersInput);
-        Button addButton = findViewById(R.id.addPlayerButton);
+        ImageButton addButton = findViewById(R.id.addPlayerButton);
         addButton.setOnClickListener(
                 new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -55,6 +66,17 @@ public class GameSettings extends AppCompatActivity {
                         int id = roomForPlayer();
                         if (id > -1) {
                             createPlayer(id);
+                        } else {
+                            AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
+                            a_builder.setMessage("Maximum number of players added!").setCancelable(true).setNegativeButton("ok",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            dialogInterface.cancel();
+                                        }
+                                    });
+                            AlertDialog alert = a_builder.create();
+                            alert.show();
                         }
                     }
                 }
@@ -84,21 +106,19 @@ public class GameSettings extends AppCompatActivity {
         name.setHint("Name");
         name.setTypeface(face);
         name.setLayoutParams(new LinearLayout.LayoutParams(0,
-                ViewGroup.LayoutParams.WRAP_CONTENT, 0.7f));
+                ViewGroup.LayoutParams.WRAP_CONTENT, 0.9f));
         ll.addView(name);
 
         // add button
-        Button remove = new Button(getApplicationContext());
-        remove.setText("Remove");
-        remove.setTextColor(Color.WHITE);
-        remove.setBackgroundColor(Color.BLACK);
-        remove.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
-        remove.setTypeface(face);
+        ImageButton remove = new ImageButton(GameSettings.this);
+        remove.setImageResource(R.drawable.remove);
+        remove.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        remove.setBackgroundColor(Color.WHITE);
         remove.setId(10 + id);
         remove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (numOfPlayers() > 3) {
-                    Button removeButton = (Button) findViewById(v.getId());
+                    ImageButton removeButton = (ImageButton) findViewById(v.getId());
                     LinearLayout parent = (LinearLayout) removeButton.getParent();
                     LinearLayout superParent = (LinearLayout) parent.getParent();
                     superParent.removeView(parent);
@@ -118,8 +138,9 @@ public class GameSettings extends AppCompatActivity {
                 }
             }
         });
+
         remove.setLayoutParams(new LinearLayout.LayoutParams(0,
-                ViewGroup.LayoutParams.WRAP_CONTENT, 0.3f));
+                ViewGroup.LayoutParams.MATCH_PARENT, 0.1f));
         ll.addView(remove);
 
         playersList.addView((View) ll);
@@ -132,7 +153,7 @@ public class GameSettings extends AppCompatActivity {
                 return i;
             }
         }
-        // no room for more activity_game_settings
+        // no room for more players
         return -1;
     }
 
@@ -146,8 +167,20 @@ public class GameSettings extends AppCompatActivity {
         return counter;
     }
 
+    public void onClickBackButtonListener() {
+        ImageButton goButton = (ImageButton) findViewById(R.id.homeButton);
+        goButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                }
+        );
+    }
+
     public void onClickHomeButtonListener() {
-        Button goButton = (Button) findViewById(R.id.homeButton);
+        ImageButton goButton = (ImageButton) findViewById(R.id.homeButton);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -161,7 +194,7 @@ public class GameSettings extends AppCompatActivity {
     }
 
     public void onClickNextButtonListener() {
-        Button goButton = (Button) findViewById(R.id.nextButton);
+        ImageButton goButton = (ImageButton) findViewById(R.id.nextButton);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

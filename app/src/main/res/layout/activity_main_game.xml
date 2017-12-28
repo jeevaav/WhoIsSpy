@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.15"
+        android:layout_weight="0.12"
         android:orientation="vertical">
 
         <TextView
@@ -20,12 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
+            android:autoSizeTextType="uniform"
             android:fontFamily="serif"
             android:gravity="center_vertical"
             android:text="Check your word"
-            android:textAlignment="center"
-            android:autoSizeTextType="uniform"
-             />
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/checkWordSub"
@@ -34,18 +33,18 @@
             android:layout_height="0dp"
             android:layout_below="@+id/checkWord"
             android:layout_weight="0.5"
-            android:fontFamily="monospace"
-            android:text="Click on your name to see your word"
-            android:textAlignment="center"
             android:autoSizeTextType="uniform"
-             />
+            android:fontFamily="@font/annie_use_your_telescope"
+            android:gravity="center_vertical"
+            android:text="Click your name to see your word"
+            android:textAlignment="center" />
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.75"
+        android:layout_weight="0.78"
         android:orientation="vertical">
 
         <ScrollView
@@ -77,7 +76,7 @@
 
             <Button
                 android:id="@+id/playButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
@@ -85,14 +84,16 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
                 android:layout_marginTop="2dp"
+                android:background="@android:color/transparent"
                 android:autoSizeTextType="uniform"
                 android:fontFamily="@font/annie_use_your_telescope"
-                android:text="Play"
+                android:text="Go!"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                />
 
-            <Button
+            <ImageButton
                 android:id="@+id/backButtonMainGame"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -102,9 +103,10 @@
                 android:layout_marginBottom="2dp"
                 android:layout_marginStart="2dp"
                 android:layout_marginTop="2dp"
-                android:autoSizeTextType="uniform"
-                android:fontFamily="@font/annie_use_your_telescope"
-                android:text="Back"
+                android:background="@android:color/transparent"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/back"
+                app:layout_constraintVertical_bias="0.533"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

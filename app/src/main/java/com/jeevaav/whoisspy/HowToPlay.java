@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class HowToPlay extends AppCompatActivity {
 
@@ -22,7 +23,7 @@ public class HowToPlay extends AppCompatActivity {
     }
 
     public void onClickHomeButtonListener() {
-        Button homeButton = (Button) findViewById(R.id.homeButtonInstructions);
+        ImageButton homeButton = (ImageButton) findViewById(R.id.homeButtonInstructions);
         homeButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -41,7 +43,7 @@ public class GamePreferences extends AppCompatActivity {
 
 
     public void backButtonListener() {
-        Button goButton = (Button) findViewById(R.id.backButton);
+        ImageButton goButton = (ImageButton) findViewById(R.id.backButton);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -56,7 +58,7 @@ public class GamePreferences extends AppCompatActivity {
     }
 
     public void nextButtonListener() {
-        Button goButton = (Button) findViewById(R.id.nextButtonPreferences);
+        ImageButton goButton = (ImageButton) findViewById(R.id.nextButtonPreferences);
         goButton.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
@@ -64,8 +66,12 @@ public class GamePreferences extends AppCompatActivity {
                         Spinner spies = (Spinner) findViewById(R.id.numOfSpies);
                         numOfSpies = spies.getSelectedItem().toString();
 
-                        Spinner blank = (Spinner) findViewById(R.id.includeBlanks);
-                        includeBlanks = blank.getSelectedItem().toString();
+                        CheckBox blank = (CheckBox) findViewById(R.id.includeBlanks);
+                        if (blank.isChecked()) {
+                            includeBlanks = "Yes";
+                        } else {
+                            includeBlanks = "No";
+                        }
 
                         Intent intent = new Intent(GamePreferences.this,
                                 MainGame.class);

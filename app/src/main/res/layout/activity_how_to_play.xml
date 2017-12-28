@@ -38,17 +38,18 @@
         android:id="@+id/include"
         layout="@layout/content_how_to_play" />
 
-    <Button
+    <ImageButton
         android:id="@+id/homeButtonInstructions"
-        android:layout_width="107dp"
-        android:layout_height="wrap_content"
-        android:autoSizeMaxTextSize="130sp"
-        android:background="@android:color/darker_gray"
-        android:fontFamily="@font/annie_use_your_telescope"
-        android:text="Home"
-        android:textColor="@android:color/white"
+        android:layout_width="69dp"
+        android:layout_height="61dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitXY"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="right|bottom"
-        tools:layout_editor_absoluteX="304dp" />
+        app:srcCompat="@drawable/home"
+        tools:layout_editor_absoluteX="342dp"
+        tools:layout_editor_absoluteY="484dp" />
+
+
 
 </android.support.design.widget.CoordinatorLayout>
