@@ -2,6 +2,7 @@ package com.jeevaav.whoisspy;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
@@ -28,8 +29,6 @@ import java.util.Random;
 
 public class MainGame extends AppCompatActivity {
 
-    private HashMap<String, String> words = new HashMap<String, String>();
-    private ArrayList<String> normalWords = new ArrayList<String>();
     private HashMap<String, Integer> players;
     private HashMap<String, Boolean> seen = new HashMap<String, Boolean>();
     private String normalWord;
@@ -37,15 +36,13 @@ public class MainGame extends AppCompatActivity {
     private int numOfSpies;
     private String includeBlanks;
     private int[] spies;
-
+    private DatabaseHelper mydb;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_game);
-        populateWords();
-
         Bundle bundle =  getIntent().getExtras();
         players = (HashMap<String, Integer>) bundle.getSerializable("players");
         numOfSpies = bundle.getInt("numOfSpies");
@@ -67,10 +64,15 @@ public class MainGame extends AppCompatActivity {
             alert.show();
         }
 
+        mydb = new DatabaseHelper(MainGame.this);
         Random rand = new Random();
-        int n = rand.nextInt(words.size() - 1);
-        normalWord = normalWords.get(n);
-        spyWord = words.get(normalWord);
+        int n = rand.nextInt(7) + 6;
+        Cursor result = mydb.getDatabaseData(n);
+
+        while (result.moveToNext()) {
+            normalWord = result.getString(1).toString();
+            spyWord = result.getString(2).toString();
+        }
 
         spies = rand.ints(0, players.size())
                                                 .distinct().limit(numOfSpies).toArray();
@@ -91,18 +93,6 @@ public class MainGame extends AppCompatActivity {
         backButtonListener();
     }
 
-    private void populateWords() {
-        words.put("Hospital", "Clinic");
-        normalWords.add("Hospital");
-        words.put("Hulk", "Spiderman");
-        normalWords.add("Hulk");
-        words.put("Teacher", "Headmaster");
-        normalWords.add("Teacher");
-        words.put("Computer", "Handphone");
-        normalWords.add("Computer");
-        words.put("Mathematics", "Science");
-        normalWords.add("Mathematics");
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void createPlayer(final String playerName, final Boolean spy) {
