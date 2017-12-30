@@ -3,6 +3,7 @@ package com.jeevaav.whoisspy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +24,7 @@ public class HowToPlay extends AppCompatActivity {
         onClickHomeButtonListener();
         Display display = getWindowManager().getDefaultDisplay();
         ImageButton home = (ImageButton) findViewById(R.id.homeButtonInstructions);
-        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) home.getLayoutParams();
+        CoordinatorLayout.LayoutParams lp = (CoordinatorLayout.LayoutParams) home.getLayoutParams();
         int width = (display.getWidth() * 12) / 100;
         lp.width = width;
         home.setLayoutParams(lp);

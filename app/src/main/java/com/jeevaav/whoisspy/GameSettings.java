@@ -42,6 +42,7 @@ public class GameSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_settings);
+        getSupportActionBar().hide();
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             int i = 5;
@@ -52,7 +53,7 @@ public class GameSettings extends AppCompatActivity {
                 if (i == 0) {
                     return;
                 }
-                handler.postDelayed(this, 10);
+                handler.postDelayed(this, 30);
             }
         });
 

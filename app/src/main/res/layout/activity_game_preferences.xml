@@ -11,9 +11,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.35"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/architects_daughter"
+            android:padding="5dp"
+            android:text="Preferences"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/playersLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
         android:orientation="vertical"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        >
 
         <TextView
             android:id="@+id/textView4"
@@ -27,6 +48,7 @@
             android:fontFamily="@font/annie_use_your_telescope"
             android:text="List of Players"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -51,6 +73,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/spiesLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.275"
@@ -72,6 +95,7 @@
             android:textStyle="bold" />
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/spinnerLayout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5">
@@ -93,6 +117,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/blanksLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.275"

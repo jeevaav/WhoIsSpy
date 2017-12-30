@@ -10,6 +10,28 @@
     tools:context="com.jeevaav.whoisspy.GameSettings">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/players"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:fontFamily="@font/architects_daughter"
+            android:padding="5dp"
+            android:text="Players"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="8sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_weight="0.08"
@@ -29,7 +51,7 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.84"
+        android:layout_weight="0.74"
         android:orientation="vertical"
         android:weightSum="1">
 
