@@ -1,10 +1,14 @@
 package com.jeevaav.whoisspy;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
@@ -14,6 +18,8 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.AnimationSet;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -26,7 +32,7 @@ public class Result extends AppCompatActivity {
     private HashMap<String, Integer> players;
     private int numOfSpies;
     private String includeBlanks;
-    private int[] spies;
+    private ArrayList<Integer> spies;
     private int spiesAlive;
     private int playersAlive;
     private ArrayList<String> playersAliveNames;
@@ -36,7 +42,7 @@ public class Result extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-
+        getSupportActionBar().hide();
         Display display = getWindowManager().getDefaultDisplay();
         ImageButton home = (ImageButton) findViewById(R.id.homeButtonResult);
         ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) home.getLayoutParams();
@@ -45,25 +51,33 @@ public class Result extends AppCompatActivity {
 
         Bundle bundle =  getIntent().getExtras();
         players = (HashMap<String, Integer>) bundle.getSerializable("players");
-        spies = bundle.getIntArray("spies");
-        numOfSpies = spies.length;
+        spies = bundle.getIntegerArrayList("spies");
+        numOfSpies = spies.size();
         playersAlive = players.size() - numOfSpies;
-        spiesAlive = spies.length;
+        spiesAlive = spies.size();
         includeBlanks = bundle.getString("includeBlanks");
 
         playersAliveNames = new ArrayList<String>();
 
-
-        int counter = 0;
-        for (String key: players.keySet()) {
-            if (containsInt(spies, counter)) {
-                createPlayer(key, true);
-            } else {
-                createPlayer(key, false);
+        final String[] playerNames = players.keySet().toArray(new String[players.size()]);
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            int counter = 0;
+            @Override
+            public void run() {
+                if (spies.contains(counter)) {
+                    createPlayer(playerNames[counter], true);
+                } else {
+                    createPlayer(playerNames[counter], false);
+                }
+                playersAliveNames.add(playerNames[counter]);
+                counter++;
+                if (counter == playerNames.length) {
+                    return;
+                }
+                handler.postDelayed(this, 50);
             }
-            playersAliveNames.add(key);
-            counter++;
-        }
+        });
 
         onClickHomeButtonListener();
         onClickRestartButtonListener();
@@ -78,7 +92,7 @@ public class Result extends AppCompatActivity {
         LinearLayout.LayoutParams layoutParams =
                 new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                         LinearLayout.LayoutParams.WRAP_CONTENT);
-        layoutParams.setMargins(0, 10, 0, 10);
+        layoutParams.setMargins(0, 20, 0, 20);
         ll.setLayoutParams(layoutParams);
 
         Typeface face = ResourcesCompat.getFont(getApplicationContext(),
@@ -91,7 +105,7 @@ public class Result extends AppCompatActivity {
         checkWord.setTextAppearance(R.style.TextSize);
         checkWord.setTypeface(face);
         checkWord.setTextColor(Color.WHITE);
-        checkWord.setBackgroundColor(Color.BLACK);
+        checkWord.setBackgroundResource(R.drawable.button_bg);
 
         checkWord.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -171,7 +185,13 @@ public class Result extends AppCompatActivity {
         checkWord.setLayoutParams(new LinearLayout.LayoutParams(0,
                 ViewGroup.LayoutParams.WRAP_CONTENT, 1));
         ll.addView(checkWord);
-        playersList.addView((View) ll);
+
+        // add animation
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(400);
+        ll.startAnimation(alphaAnimation);
+
+        playersList.addView(ll);
     }
 
     private boolean containsInt(final int[] array, int val) {
@@ -213,6 +233,7 @@ public class Result extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         restartGame();
+                        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
                     }
                 }
         );
@@ -246,4 +267,5 @@ public class Result extends AppCompatActivity {
             button.setEnabled(false);
         }
     }
+
 }

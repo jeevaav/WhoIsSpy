@@ -51,9 +51,9 @@ public class GamePreferences extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Intent openMainActivity= new Intent(GamePreferences.this,
-                                                                        GameSettings.class);
+                                                                                GameSettings.class);
                         openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                        startActivityIfNeeded(openMainActivity, 0);
+                        startActivity(openMainActivity);
                     }
                 }
         );
@@ -83,6 +83,7 @@ public class GamePreferences extends AppCompatActivity {
                         intent.putExtra("players", players);
 
                         startActivity(intent);
+                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                     }
                 }
         );

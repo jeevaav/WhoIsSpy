@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
@@ -15,6 +16,9 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -38,10 +42,19 @@ public class GameSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_settings);
-
-        for (int i = 0; i < 4; i++) {
-            createPlayer(i);
-        }
+        final Handler handler = new Handler();
+        handler.post(new Runnable() {
+            int i = 5;
+            @Override
+            public void run() {
+                createPlayer(i);
+                i--;
+                if (i == 0) {
+                    return;
+                }
+                handler.postDelayed(this, 10);
+            }
+        });
 
         Display display = getWindowManager().getDefaultDisplay();
         ImageButton home = (ImageButton) findViewById(R.id.homeButton);
@@ -53,12 +66,17 @@ public class GameSettings extends AppCompatActivity {
         onClickNextButtonListener();
         addPlayersOnClick();
         onClickHomeButtonListener();
-        onClickBackButtonListener();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
     public void addPlayersOnClick() {
         playersList = findViewById(R.id.playersInput);
-        ImageButton addButton = findViewById(R.id.addPlayerButton);
+        final ImageButton addButton = findViewById(R.id.addPlayerButton);
         addButton.setOnClickListener(
                 new View.OnClickListener() {
                     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -114,15 +132,23 @@ public class GameSettings extends AppCompatActivity {
         ImageButton remove = new ImageButton(GameSettings.this);
         remove.setImageResource(R.drawable.remove);
         remove.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        remove.setBackgroundColor(Color.WHITE);
+        remove.setBackgroundResource(R.drawable.custom_red_ripple);
         remove.setId(10 + id);
         remove.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (numOfPlayers() > 3) {
                     ImageButton removeButton = (ImageButton) findViewById(v.getId());
-                    LinearLayout parent = (LinearLayout) removeButton.getParent();
-                    LinearLayout superParent = (LinearLayout) parent.getParent();
-                    superParent.removeView(parent);
+                    final LinearLayout parent = (LinearLayout) removeButton.getParent();
+                    final LinearLayout superParent = (LinearLayout) parent.getParent();
+                    parent.animate().translationX(-1000).
+                            alpha(0).setDuration(300).
+                            withEndAction(new Runnable() {
+                        @Override
+                        public void run() {
+                            superParent.removeView(parent);
+                        }
+                    });
+
                     ids[(int) v.getId() - 10] = 0;
                 } else {
                     AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
@@ -144,6 +170,12 @@ public class GameSettings extends AppCompatActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT, 0.1f));
         ll.addView(remove);
 
+        // add animation
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0.0f, 1.0f);
+        alphaAnimation.setDuration(400);
+        ll.startAnimation(alphaAnimation);
+
+        // add the view to the main view
         playersList.addView((View) ll);
         ids[id] = 1;
     }
@@ -168,17 +200,6 @@ public class GameSettings extends AppCompatActivity {
         return counter;
     }
 
-    public void onClickBackButtonListener() {
-        ImageButton goButton = (ImageButton) findViewById(R.id.backButtonPlayers);
-        goButton.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        finish();
-                    }
-                }
-        );
-    }
 
     public void onClickHomeButtonListener() {
         ImageButton goButton = (ImageButton) findViewById(R.id.homeButton);
@@ -201,7 +222,7 @@ public class GameSettings extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         boolean flag = false;
-                        HashMap<String, Integer> players = new HashMap<String, Integer>();
+                        final HashMap<String, Integer> players = new HashMap<String, Integer>();
                         for (int i = 0; i < maxPlayers; i++) {
                             if (ids[i] == 1) {
                                 EditText player1   = (EditText) findViewById(100 + i);
@@ -230,12 +251,11 @@ public class GameSettings extends AppCompatActivity {
                             gameOver.show();
 
                         } else {
-
                             Intent intent = new Intent(GameSettings.this,
                                     GamePreferences.class);
-
                             intent.putExtra("players", players);
                             startActivity(intent);
+                            overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
                         }
                     }
                 }

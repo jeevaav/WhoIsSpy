@@ -20,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/white"
+            android:background="?android:attr/selectableItemBackground"
             android:scaleType="centerInside"
             app:srcCompat="@drawable/add" />
 
@@ -84,28 +84,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
-                android:background="@android:color/transparent"
+                android:background="?android:attr/selectableItemBackground"
                 android:scaleType="fitXY"
-                app:layout_constraintEnd_toStartOf="@+id/nextButton"
-                app:layout_constraintStart_toEndOf="@+id/backButtonPlayers"
-                app:srcCompat="@drawable/home" />
-
-            <ImageButton
-                android:id="@+id/backButtonPlayers"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/allPlayers"
-                android:layout_marginStart="4dp"
-                android:layout_toLeftOf="@+id/includeBlanks"
-                android:layout_toStartOf="@+id/includeBlanks"
-
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.533"
-                app:srcCompat="@drawable/back" />
+                app:srcCompat="@drawable/home" />
 
             <ImageButton
                 android:id="@+id/nextButton"
@@ -115,13 +98,8 @@
                 android:layout_alignBottom="@+id/backButton"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_marginBottom="2dp"
                 android:layout_marginEnd="2dp"
-                android:layout_marginTop="2dp"
-
-                android:background="@android:color/transparent"
-
-
+                android:background="?android:attr/selectableItemBackground"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

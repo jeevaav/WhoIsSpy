@@ -2,10 +2,12 @@ package com.jeevaav.whoisspy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Display;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -19,7 +21,12 @@ public class HowToPlay extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         onClickHomeButtonListener();
-
+        Display display = getWindowManager().getDefaultDisplay();
+        ImageButton home = (ImageButton) findViewById(R.id.homeButtonInstructions);
+        ConstraintLayout.LayoutParams lp = (ConstraintLayout.LayoutParams) home.getLayoutParams();
+        int width = (display.getWidth() * 12) / 100;
+        lp.width = width;
+        home.setLayoutParams(lp);
     }
 
     public void onClickHomeButtonListener() {
