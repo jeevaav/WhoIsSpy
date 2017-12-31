@@ -39,12 +39,10 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".MainGame"
             android:label=""
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Result"
             android:label=""
@@ -55,24 +53,18 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".HowToPlay"
-            android:label="@string/title_activity_how_to_play"
+            android:name=".Standings"
+            android:label=""
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.PopUpCustom"></activity>
+
+        <activity android:name=".HowToPlay">
             <intent-filter>
                 <action android:name="com.jeevaav.whoisspy.HowToPlay" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".Standings"
-            android:theme="@style/AppTheme.PopUpCustom"
-            android:label=""
-            android:screenOrientation="portrait">
-        </activity>
-
     </application>
 
 </manifest>

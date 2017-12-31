@@ -33,8 +33,8 @@ import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
 
 public class GameSettings extends AppCompatActivity {
     private LinearLayout playersList;
-    private int[] ids = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    private int maxPlayers = 10;
+    private int[] ids = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    private int maxPlayers = 15;
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -211,6 +211,7 @@ public class GameSettings extends AppCompatActivity {
                         Intent intent = new Intent(GameSettings.this,
                                 MainActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.translatein, R.anim.translateout);
                     }
                 }
         );

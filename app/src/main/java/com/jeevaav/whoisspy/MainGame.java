@@ -37,6 +37,7 @@ public class MainGame extends AppCompatActivity {
     private ArrayList<Integer> spies;
 
 
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,13 +138,30 @@ public class MainGame extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(MainGame.this,
-                                Result.class);
-                        intent.putExtra("players", players);
-                        intent.putExtra("spies", spies);
-                        intent.putExtra("includeBlanks", includeBlanks);
-                        startActivity(intent);
-                        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                        final String[] playerNames = players.keySet().toArray(new String[players.size()]);
+                        Random rand = new Random();
+                        int n = rand.nextInt(playerNames.length) + 0;
+                        AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
+                        a_builder.setMessage("Player " + playerNames[n].toUpperCase() +
+                                " will start first ....\n").setCancelable(false)
+                                .setNegativeButton("ok",
+                                        new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialogInterface, int i) {
+                                                dialogInterface.cancel();
+                                                Intent intent = new Intent(MainGame.this,
+                                                        Result.class);
+                                                intent.putExtra("players", players);
+                                                intent.putExtra("spies", spies);
+                                                intent.putExtra("includeBlanks", includeBlanks);
+                                                startActivity(intent);
+                                                overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+                                            }
+                                        });
+
+                        AlertDialog whoStarts = a_builder.create();
+                        whoStarts.show();
+
                     }
                 }
         );
@@ -166,25 +184,29 @@ public class MainGame extends AppCompatActivity {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private  void createPlayersSpiesBlanks() {
+    private void createPlayersSpiesBlanks() {
 
         if (includeBlanks.equals("Yes")) {
-            if (players.size() - numOfSpies == 2) {
-                numOfBlanks = 0;
-                AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
-                a_builder.setMessage("No blanks will be included")
-                        .setCancelable(true).setNegativeButton("ok",
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.cancel();
-                            }
-                        });
-                AlertDialog alert = a_builder.create();
-                alert.setTitle("Less players / More spies");
-                alert.show();
+            if (players.size() <= 10) {
+                if (players.size() - numOfSpies == 2) {
+                    numOfBlanks = 0;
+                    AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
+                    a_builder.setMessage("No blanks will be included")
+                            .setCancelable(true).setNegativeButton("ok",
+                            new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    dialogInterface.cancel();
+                                }
+                            });
+                    AlertDialog alert = a_builder.create();
+                    alert.setTitle("Less players / More spies");
+                    alert.show();
+                } else {
+                    numOfBlanks = min((players.size() - numOfSpies) / 2, 2);
+                }
             } else {
-                numOfBlanks = min((players.size() - numOfSpies) / 2, 2);
+                numOfBlanks = min((players.size() - numOfSpies) / 3, 3);
             }
         }
 
@@ -229,7 +251,6 @@ public class MainGame extends AppCompatActivity {
             blanks.add(spiesAndBlanks[i]);
             i++;
         }
-
 
         final String[] playerNames = players.keySet().toArray(new String[players.size()]);
         final Handler handler = new Handler();

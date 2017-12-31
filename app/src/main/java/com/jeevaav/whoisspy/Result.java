@@ -19,7 +19,9 @@ import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -27,6 +29,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Result extends AppCompatActivity {
     private HashMap<String, Integer> players;
@@ -78,6 +81,7 @@ public class Result extends AppCompatActivity {
                 handler.postDelayed(this, 50);
             }
         });
+
 
         onClickHomeButtonListener();
         onClickRestartButtonListener();
@@ -157,6 +161,7 @@ public class Result extends AppCompatActivity {
                     gameOver.show();
                     TextView view = findViewById(R.id.playSmartSub);
                     view.setText("Game Over");
+                    rankAnimator();
                 }
 
                 if (spiesAlive == 0) {
@@ -175,6 +180,7 @@ public class Result extends AppCompatActivity {
                     gameOver.show();
                     TextView view = findViewById(R.id.playSmartSub);
                     view.setText("Game Over");
+                    rankAnimator();
                 }
                 AlertDialog alert = a_builder.create();
                 alert.show();
@@ -221,6 +227,7 @@ public class Result extends AppCompatActivity {
                         Intent intent = new Intent(Result.this,
                                 MainActivity.class);
                         startActivity(intent);
+                        overridePendingTransition(R.anim.translatein, R.anim.translateout);
                     }
                 }
         );
@@ -266,6 +273,16 @@ public class Result extends AppCompatActivity {
             Button button = findViewById(player.hashCode());
             button.setEnabled(false);
         }
+    }
+
+    private void rankAnimator() {
+        Button rankButton = findViewById(R.id.rankButton);
+        ObjectAnimator colorAnim = ObjectAnimator.ofInt(rankButton, "textColor",
+                Color.GRAY, Color.BLACK);
+        colorAnim.setEvaluator(new ArgbEvaluator());
+        colorAnim.setDuration(500);
+        colorAnim.setRepeatCount(ValueAnimator.INFINITE);
+        colorAnim.start();
     }
 
 }
