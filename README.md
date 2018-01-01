@@ -11,3 +11,16 @@ players. Then, each player describes the word given in turn. The first person to
 by the computer for you. After each round of explanation, you will discuss among others to kill a person whom all 
 of you agree is a spy. The game continues until all the spies are killed or number of spies become similar to number 
 of normal players.
+
+### Screenshots
+
+![alt text](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
+
+### Built With
+
+* Java
+* SQLite3
+
+### Authors
+
+* **Jeevaa Velayutham** - [jeevaav](https://github.com/jeevaav)
