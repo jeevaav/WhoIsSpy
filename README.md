@@ -14,7 +14,7 @@ of normal players.
 
 ### Screenshots
 
-![](./screenshot/launching.png =100x20)
+![](WhoIsSpy/screenshot/launching.png =100x20)
 
 
 ### Built With
