@@ -17,6 +17,6 @@ of normal players.
 * Java
 * SQLite3
 
-### Authors
+### Author
 
 * **Jeevaa Velayutham** - [jeevaav](https://github.com/jeevaav) 
