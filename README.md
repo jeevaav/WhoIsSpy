@@ -12,6 +12,10 @@ by the computer for you. After each round of explanation, you will discuss among
 of you agree is a spy. The game continues until all the spies are killed or number of spies become similar to number 
 of normal players.
 
+### Android Application
+
+I have not published the game in Play Store. To be published soon ...
+
 ### Built With
 
 * Java
