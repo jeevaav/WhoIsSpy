@@ -14,7 +14,7 @@ of normal players.
 
 ### Android Application
 
-I have not published the game in Play Store. To be published soon ...
+I have not published the game in Play Store yet. To be published soon ...
 
 ### Built With
 
