@@ -14,7 +14,7 @@ of normal players.
 
 ### Screenshots
 
-![] (https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/launching.png)
+![](https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/launching.png)
 
 
 ### Built With
