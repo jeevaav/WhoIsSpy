@@ -12,11 +12,6 @@ by the computer for you. After each round of explanation, you will discuss among
 of you agree is a spy. The game continues until all the spies are killed or number of spies become similar to number 
 of normal players.
 
-### Screenshots
-
-![](WhoIsSpy/screenshot/launching.png =100x20)
-
-
 ### Built With
 
 * Java
@@ -24,4 +19,4 @@ of normal players.
 
 ### Authors
 
-* **Jeevaa Velayutham** - [jeevaav](https://github.com/jeevaav)
+* **Jeevaa Velayutham** - [jeevaav](https://github.com/jeevaav) 
