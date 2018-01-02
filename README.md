@@ -12,6 +12,10 @@ by the computer for you. After each round of explanation, you will discuss among
 of you agree is a spy. The game continues until all the spies are killed or number of spies become similar to number 
 of normal players.
 
+### Screenshots 
+
+<img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/launching.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/mainpage.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/how_to_play.png" height="400" width="230">    <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/add_players.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/players.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/preferences.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/check_words.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/check_your_word.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/play_game.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/kill_a_player.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/spy_busted.png" height="400" width="230">     <img src="https://github.com/jeevaav/WhoIsSpy/blob/master/screenshot/rank.png" height="400" width="230">      
+
 ### Android Application
 
 I have not published the game in Play Store yet. To be published soon ...
