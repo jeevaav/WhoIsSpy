@@ -224,6 +224,7 @@ public class GameSettings extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         boolean flag = false;
+                        boolean samePlayerFlag = false;
                         final HashMap<String, Integer> players = new HashMap<String, Integer>();
                         for (int i = 0; i < maxPlayers; i++) {
                             if (ids[i] == 1) {
@@ -232,6 +233,8 @@ public class GameSettings extends AppCompatActivity {
                                 if (player.isEmpty() || player == null) {
                                     flag = true;
                                     break;
+                                } else if (players.containsKey(player)) {
+                                    samePlayerFlag = true;
                                 }
                                 players.put(player, 0);
 
@@ -252,6 +255,20 @@ public class GameSettings extends AppCompatActivity {
                             gameOver.setTitle("Error");
                             gameOver.show();
 
+                        } else if (samePlayerFlag) {
+                            AlertDialog.Builder a_builder = new AlertDialog.Builder(GameSettings.this);
+                            a_builder.setMessage("Two or more players can't have the same name.")
+                                    .setCancelable(true)
+                                    .setNegativeButton("ok",
+                                            new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    dialogInterface.cancel();
+                                                }
+                                            });
+                            AlertDialog gameOver = a_builder.create();
+                            gameOver.setTitle("Error");
+                            gameOver.show();
                         } else {
                             Intent intent = new Intent(GameSettings.this,
                                     GamePreferences.class);

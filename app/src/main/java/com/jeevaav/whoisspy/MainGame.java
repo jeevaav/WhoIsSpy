@@ -142,7 +142,7 @@ public class MainGame extends AppCompatActivity {
                         Random rand = new Random();
                         int n = rand.nextInt(playerNames.length) + 0;
                         AlertDialog.Builder a_builder = new AlertDialog.Builder(MainGame.this);
-                        a_builder.setMessage("Player " + playerNames[n].toUpperCase() +
+                        a_builder.setMessage(playerNames[n].toUpperCase() +
                                 " will start first ....\n").setCancelable(false)
                                 .setNegativeButton("ok",
                                         new DialogInterface.OnClickListener() {
@@ -203,7 +203,7 @@ public class MainGame extends AppCompatActivity {
                     alert.setTitle("Less players / More spies");
                     alert.show();
                 } else {
-                    numOfBlanks = min((players.size() - numOfSpies) / 2, 2);
+                    numOfBlanks = min((players.size() - numOfSpies) / 3, 2);
                 }
             } else {
                 numOfBlanks = min((players.size() - numOfSpies) / 3, 3);
